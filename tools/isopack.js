@@ -1142,7 +1142,7 @@ _.extend(Isopack.prototype, {
       }
 
       var transpiled = babel.transform(inputFileContents, {
-        sourceMaps: true,
+        sourceMaps: "inline",
         filename: path
       });
 
