@@ -1,4 +1,4 @@
-require('babel/register')({ sourceMaps: "inline", compact: false }); // #RemoveInProd this line is removed in isopack.js
+require('babel/register')(require('../../babel-config.js'));
 
 var _ = require('underscore');
 var assert = require('assert');

@@ -1141,10 +1141,9 @@ _.extend(Isopack.prototype, {
         inputFileContents = inputFileContents.replace(/.+#RemoveInProd.+/, "");
       }
 
-      var transpiled = babel.transform(inputFileContents, {
-        sourceMaps: "inline",
+      var transpiled = babel.transform(inputFileContents, _.extend({
         filename: path
-      });
+      }, require('./babel-config.js')));
 
       builder.write(path, {
         data: new Buffer(transpiled.code, 'utf8')
