@@ -1,3 +1,5 @@
+require('babel/register')({ sourceMaps: "inline", compact: false }); // #RemoveInProd this line is removed in isopack.js
+
 var _ = require('underscore');
 var assert = require('assert');
 var crypto = require('crypto');
