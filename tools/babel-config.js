@@ -1,3 +1,5 @@
+// This is the same set of transformations that we will enable in a future
+// official React package
 module.exports = {
   sourceMaps: "inline",
   compact: false,
