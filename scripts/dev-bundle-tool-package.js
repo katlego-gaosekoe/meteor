@@ -26,7 +26,7 @@ var packageJson = {
     // in the package too) because we should consider using lodash instead
     // (and there are backwards-incompatible changes either way).
     underscore: "1.5.2",
-    "source-map-support": "0.2.8",
+    "source-map-support": "0.3.1",
     semver: "4.1.0",
     request: "2.47.0",
     fstream: "https://github.com/meteor/fstream/tarball/d11b9ec4a13918447c8af7559c243c190744dd1c",
@@ -55,8 +55,7 @@ var packageJson = {
     eachline: "https://github.com/meteor/node-eachline/tarball/ff89722ff94e6b6a08652bf5f44c8fffea8a21da",
     cordova: "5.0.0",
     pathwatcher: "4.1.0",
-    babel: "5.5.6",
-    "source-map-support": "0.3.1"
+    babel: "5.5.6"
   }
 };
 
