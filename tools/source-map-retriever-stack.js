@@ -49,7 +49,7 @@ push(sourceMapSupport.retrieveSourceMap);
 
 // Look in <filename>.map
 push((filename) => {
-  var withMapExtension = pathForSourceMap + ".map";
+  var withMapExtension = filename + ".map";
   if (fs.existsSync(withMapExtension)) {
     return {
       map: fs.readFileSync(withMapExtension)
