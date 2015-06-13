@@ -1148,6 +1148,10 @@ _.extend(Isopack.prototype, {
       builder.write(path, {
         data: new Buffer(transpiled.code, 'utf8')
       });
+
+      builder.write(path + ".map", {
+        data: new Buffer(JSON.stringify(transpiled.map), 'utf8')
+      });
     });
 
     var gitSha = files.runGitInCheckout('rev-parse', 'HEAD');

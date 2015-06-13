@@ -15,7 +15,7 @@ var crypto = require('crypto');
 var rimraf = require('rimraf');
 var Future = require('fibers/future');
 var sourcemap = require('source-map');
-var sourcemap_support = require('source-map-support');
+var sourceMapRetrieverStack = require('./source-map-retriever-stack.js');
 
 var utils = require('./utils.js');
 var cleanup = require('./cleanup.js');
@@ -34,21 +34,19 @@ _.extend(files, miniFiles);
 
 var parsedSourceMaps = {};
 var nextStackFilenameCounter = 1;
-var retrieveSourceMap = function (pathForSourceMap) {
-  if (_.has(parsedSourceMaps, pathForSourceMap))
+
+// Use the source maps specified to runJavaScript
+var useParsedSourceMap = function (pathForSourceMap) {
+  // Check our fancy source map data structure, used for isopacks
+  if (_.has(parsedSourceMaps, pathForSourceMap)) {
     return {map: parsedSourceMaps[pathForSourceMap]};
+  }
+
   return null;
 };
 
-sourcemap_support.install({
-  // Use the source maps specified to runJavaScript instead of parsing source
-  // code for them.
-  retrieveSourceMap: retrieveSourceMap,
-  // For now, don't fix the source line in uncaught exceptions, because we
-  // haven't fixed handleUncaughtExceptions in source-map-support to properly
-  // locate the source files.
-  handleUncaughtExceptions: false
-});
+// Try this source map first
+sourceMapRetrieverStack.push(useParsedSourceMap);
 
 // given a predicate function and a starting path, traverse upwards
 // from the path until we find a path that satisfies the predicate.
